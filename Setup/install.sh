@@ -6,22 +6,19 @@
 # Load configuration
 source config/default.conf
 
-# Get the absolute path of the script directory
-SCRIPT_DIR=$(dirname "$(realpath "$0")")
-
 # Source utility functions
-source "$SCRIPT_DIR/Scripts/utils.sh"
+source scripts/utils.sh
 
 # Source installation scripts
-source "$SCRIPT_DIR/Scripts/homebrew.sh"
-source "$SCRIPT_DIR/Scripts/fonts.sh"
-source "$SCRIPT_DIR/Scripts/zsh_config.sh"
-source "$SCRIPT_DIR/Scripts/install_oh_my_posh.sh"
-source "$SCRIPT_DIR/Scripts/install_fastfetch.sh"
-source "$SCRIPT_DIR/Scripts/install_apps.sh"
+source Scripts/homebrew.sh
+source Scripts/fonts.sh
+source Scripts/zsh_config.sh
+source Scripts/install_oh_my_posh.sh
+source Scripts/install_fastfetch.sh
+source Scripts/install_apps.sh
 
 # Source Zsh configuration
-source "$SCRIPT_DIR/Scripts/zsh_config.sh"
+source Scripts/zsh_config.sh
 
 # Run installation steps
 log "[🔧] Starting macOS Setup..."
