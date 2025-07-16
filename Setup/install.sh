@@ -10,12 +10,12 @@ source config/default.conf
 source scripts/utils.sh
 
 # Source installation scripts
-source scripts/homebrew.sh
-source scripts/fonts.sh
-source scripts/zsh_config.sh
-source scripts/install_oh_my_posh.sh
-source scripts/install_fastfetch.sh
-source scripts/install_apps.sh
+source Setup/Scripts/homebrew.sh
+source Setup/Scripts/fonts.sh
+source Setup/Scripts/zsh_config.sh
+source Setup/Scripts/install_oh_my_posh.sh
+source Setup/Scripts/install_fastfetch.sh
+source Setup/Scripts/install_apps.sh
 
 # Source Zsh configuration
 source scripts/zsh_config.sh
