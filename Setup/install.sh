@@ -10,15 +10,15 @@ source config/default.conf
 source scripts/utils.sh
 
 # Source installation scripts
-source Setup/Scripts/homebrew.sh
-source Setup/Scripts/fonts.sh
-source Setup/Scripts/zsh_config.sh
-source Setup/Scripts/install_oh_my_posh.sh
-source Setup/Scripts/install_fastfetch.sh
-source Setup/Scripts/install_apps.sh
+source Scripts/homebrew.sh
+source Scripts/fonts.sh
+source Scripts/zsh_config.sh
+source Scripts/install_oh_my_posh.sh
+source Scripts/install_fastfetch.sh
+source Scripts/install_apps.sh
 
 # Source Zsh configuration
-source scripts/zsh_config.sh
+source Scripts/zsh_config.sh
 
 # Run installation steps
 log "[🔧] Starting macOS Setup..."
