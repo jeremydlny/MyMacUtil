@@ -1,6 +1,4 @@
 # MyMacUtil
-
-## MyMacUtil
 Automated setup script for configuring your macOS terminal with essential tools and customizations.
 
 ## Features
