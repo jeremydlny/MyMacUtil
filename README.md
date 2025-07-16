@@ -18,7 +18,7 @@ Automated setup script for configuring your macOS terminal with essential tools 
 ## Installation
 Download and run the installation script:
 ```bash
-curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Mac-Setup/install.sh | bash
 ```
 
 ## Usage
