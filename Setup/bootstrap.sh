@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 # Bootstrap script for MyMacUtil
 set -e
@@ -28,3 +28,4 @@ done
 # Run installation
 log "🚀" "Starting installation..."
 ./install.sh
+exec zsh -l
