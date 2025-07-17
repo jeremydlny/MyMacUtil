@@ -28,8 +28,3 @@ done
 # Run installation
 log "🚀" "Starting installation..."
 ./install.sh
-
-# Handle terminal restart for piped execution
-log "✅" "Installation complete!"
-log "🔄" "To complete setup, run: source ~/.zshrc"
-log "💡" "Or restart your terminal for full effect"
