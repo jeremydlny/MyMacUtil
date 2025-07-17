@@ -21,18 +21,34 @@ install_font() {
         return 1
     fi
 
-    # Download and install font
-    if ! curl -L "$FONT_URL" -o "${FONT_DIR}/${FONT_NAME}.zip"; then
-        echo "Error: Failed to download font" >&2
+    # Download and install only regular and italic fonts
+    local fonts_to_download=(
+        "${FONT_NAME}-Regular.ttf"
+        "${FONT_NAME}-Italic.ttf"
+    )
+    local success=true
+
+    for font in "${fonts_to_download[@]}"; do
+        local font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/$font"
+        
+        if curl -I "$font_url" &>/dev/null; then
+            if ! curl -L "$font_url" -o "${FONT_DIR}/$font"; then
+                echo "Error: Failed to download $font" >&2
+                success=false
+                break
+            fi
+        else
+            echo "Warning: $font not found at URL" >&2
+            success=false
+            break
+        fi
+    done
+    
+    if $success; then
+        log "[✅] Fonts installation completed"
+        return 0
+    else
+        log "[❌] Fonts installation failed"
         return 1
     fi
-
-    # Extract font
-    if ! unzip -o "${FONT_DIR}/${FONT_NAME}.zip" -d "$FONT_DIR"; then
-        echo "Error: Failed to extract font" >&2
-        return 1
-    fi
-
-    log "[✔] Font installed successfully"
-    return 0
 }

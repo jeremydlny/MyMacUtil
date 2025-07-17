@@ -10,33 +10,24 @@ SCRIPT_DIR=$(dirname "$(realpath "$BASH_SOURCE")")
 source "$SCRIPT_DIR/Config/default.conf"
 
 # Source utility functions
-source "$SCRIPT_DIR/scripts/utils.sh"
+source "$SCRIPT_DIR/Scripts/utils.sh"
 
 # Source installation scripts
-<<<<<<< HEAD
-source Scripts/homebrew.sh
-source Scripts/fonts.sh
-source Scripts/zsh_config.sh
-source Scripts/install_oh_my_posh.sh
-source Scripts/install_fastfetch.sh
-source Scripts/install_apps.sh
+source "$SCRIPT_DIR/Scripts/homebrew.sh"
+source "$SCRIPT_DIR/Scripts/fonts.sh"
+source "$SCRIPT_DIR/Scripts/zsh_config.sh"
+source "$SCRIPT_DIR/Scripts/install_oh_my_posh.sh"
+source "$SCRIPT_DIR/Scripts/install_fastfetch.sh"
+source "$SCRIPT_DIR/Scripts/install_apps.sh"
 
 # Source Zsh configuration
-source Scripts/zsh_config.sh
-=======
-source "$SCRIPT_DIR/scripts/homebrew.sh"
-source "$SCRIPT_DIR/scripts/fonts.sh"
-source "$SCRIPT_DIR/scripts/zsh_config.sh"
-source "$SCRIPT_DIR/scripts/install_oh_my_posh.sh"
-source "$SCRIPT_DIR/scripts/install_fastfetch.sh"
-source "$SCRIPT_DIR/scripts/install_apps.sh"
-
-# Source Zsh configuration
-source "$SCRIPT_DIR/scripts/zsh_config.sh"
->>>>>>> develop
+source "$SCRIPT_DIR/Scripts/zsh_config.sh"
 
 # Run installation steps
 log "[🔧] Starting macOS Setup..."
+
+# Install fonts
+install_font
 
 # Check prerequisites
 check_prerequisites() {
@@ -45,13 +36,10 @@ check_prerequisites() {
         exit 1
     fi
 
-    # Get available disk space in KB
-    local available_space=$(df -k / | awk 'NR==2 {print $4}')
+    # Get available disk space in 512-byte blocks and convert to bytes
+    local available_space=$(( $(df -k / | awk 'NR==2 {print $4}') * 1024 ))
     
-    # Convert MIN_DISK_SPACE to KB for comparison
-    local min_space_kb=$((MIN_DISK_SPACE / 1024))
-    
-    if [ "$available_space" -lt "$min_space_kb" ]; then
+    if [ "$available_space" -lt "$MIN_DISK_SPACE" ]; then
         log "Error: Not enough disk space" >&2
         log "Available: $((available_space / 1024 / 1024))GB"
         log "Required: $((MIN_DISK_SPACE / 1024 / 1024))GB"
@@ -69,14 +57,30 @@ main() {
     check_prerequisites
     
     # Core components
-    install_homebrew && configure_homebrew
-    install_font
-    configure_zsh
+    if install_homebrew && configure_homebrew; then
+        log "[✅] Homebrew installation completed"
+    fi
+    
+    if install_font; then
+        log "[✅] Fonts installation completed"
+    fi
+    
+    if configure_zsh; then
+        log "[✅] Zsh configuration completed"
+    fi
     
     # Additional components
-    install_oh_my_posh
-    install_fastfetch
-    install_apps
+    if install_oh_my_posh; then
+        log "[✅] Oh My Posh installation completed"
+    fi
+    
+    if install_fastfetch; then
+        log "[✅] Fastfetch installation completed"
+    fi
+    
+    if install_apps; then
+        log "[✅] Applications installation completed"
+    fi
     
     # Final message
     log "[✅] Setup complete!"
