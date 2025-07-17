@@ -36,8 +36,13 @@ check_prerequisites() {
         exit 1
     fi
 
-    # Get available disk space in 512-byte blocks and convert to bytes
+    # Get available disk space in kilobytes and convert to bytes
     local available_space=$(( $(df -k / | awk 'NR==2 {print $4}') * 1024 ))
+    
+    if [ -z "$available_space" ]; then
+        log "Error: Failed to get disk space information" >&2
+        exit 1
+    fi
     
     if [ "$available_space" -lt "$MIN_DISK_SPACE" ]; then
         log "Error: Not enough disk space" >&2
