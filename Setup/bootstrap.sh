@@ -5,6 +5,16 @@ set -e
 
 log() { echo "[$1] $2"; }
 
+# Check if script is being piped (curl | bash)
+if [ ! -t 0 ]; then
+    log "❌" "This script cannot be run with curl | bash"
+    log "ℹ️" "Please run it with:"
+    log "  " "curl -O https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup/bootstrap.sh"
+    log "  " "chmod +x bootstrap.sh"
+    log "  " "./bootstrap.sh"
+    exit 1
+fi
+
 # Setup
 INSTALL_DIR="$HOME/.my-macutil"
 BASE_URL="https://raw.githubusercontent.com/jeremydlny/MyMacUtil/main/Setup"
@@ -28,4 +38,23 @@ done
 # Run installation
 log "🚀" "Starting installation..."
 ./install.sh
+
+# Wait for terminal to restart
+log "⏳" "Waiting for terminal to restart..."
+COUNTDOWN=5
+while [ $COUNTDOWN -gt 0 ]; do
+    echo -ne "\rTerminal will restart in $COUNTDOWN seconds... "
+    sleep 1
+    COUNTDOWN=$((COUNTDOWN-1))
+done
+
+echo -e "\n"
+# Check if we're still in the same shell
+if [ "$(ps -p $$ -o comm=)" = "bash" ]; then
+    log "❌" "Terminal failed to restart automatically!"
+    log "⚠️" "Please restart your terminal manually to apply all changes"
+    log "ℹ️" "You can do this by closing and reopening your terminal, or by running:"
+    log "  " "exec zsh -l"
+    exit 1
+fi
 exec zsh -l
