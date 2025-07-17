@@ -12,4 +12,5 @@ install_oh_my_posh() {
             mkdir -p "$HOME/.poshthemes"
             curl -s https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.json -o "$HOME/.poshthemes/atomic.json"
         fi
+    fi
 }

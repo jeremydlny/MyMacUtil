@@ -3,22 +3,22 @@
 # macOS Setup Script
 # Orchestrates the installation and configuration of macOS components
 
-# Get the absolute path of the script directory
-SCRIPT_DIR="$(pwd)"
+# Get absolute path of the script directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Load configuration
-source "./Config/default.conf"
+source "$SCRIPT_DIR/Config/default.conf"
 
 # Source utility functions
-source "./Scripts/utils.sh"
+source "$SCRIPT_DIR/Scripts/utils.sh"
 
 # Source installation scripts
-source "./Scripts/homebrew.sh"
-source "./Scripts/fonts.sh"
-source "./Scripts/zsh_config.sh"
-source "./Scripts/install_oh_my_posh.sh"
-source "./Scripts/install_fastfetch.sh"
-source "./Scripts/install_apps.sh"
+source "$SCRIPT_DIR/Scripts/homebrew.sh"
+source "$SCRIPT_DIR/Scripts/fonts.sh"
+source "$SCRIPT_DIR/Scripts/zsh_config.sh"
+source "$SCRIPT_DIR/Scripts/install_oh_my_posh.sh"
+source "$SCRIPT_DIR/Scripts/install_fastfetch.sh"
+source "$SCRIPT_DIR/Scripts/install_apps.sh"
 
 # Check prerequisites
 check_prerequisites() {

@@ -8,8 +8,8 @@ log() {
     echo "[$1] $2"
 }
 
-# Get current directory
-CURRENT_DIR=$(pwd)
+# Get absolute path of the script directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Download function
 download_file() {
@@ -17,13 +17,13 @@ download_file() {
     local dest="$2"
     local base_url="https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup"
     
-    if [ -f "$CURRENT_DIR/$dest" ]; then
+    if [ -f "$SCRIPT_DIR/$dest" ]; then
         log "ℹ️" "Skipping download of $dest (already exists)"
         return 0
     fi
     
     log "📦" "Downloading $dest..."
-    curl -s "$base_url/$dest" -o "$CURRENT_DIR/$dest"
+    curl -s "$base_url/$dest" -o "$SCRIPT_DIR/$dest"
     if [ $? -ne 0 ]; then
         log "❌" "Failed to download $dest"
         return 1
