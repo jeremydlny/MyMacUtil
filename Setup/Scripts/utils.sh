@@ -10,8 +10,16 @@ add_if_missing() {
     fi
 }
 
-# Log function with optional verbose mode
-log() { $QUIET || echo "$@"; }
+# Log function with optional quiet mode
+log() {
+    if [ -z "$QUIET" ] || [ "$QUIET" = "false" ]; then
+        echo "$@"
+    fi
+}
 
 # Verbose log function
-log_verbose() { $VERBOSE && echo "$@"; }
+log_verbose() {
+    if [ "$VERBOSE" = "true" ]; then
+        echo "$@"
+    fi
+}

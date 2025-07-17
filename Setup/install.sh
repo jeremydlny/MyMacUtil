@@ -7,27 +7,18 @@
 SCRIPT_DIR=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Load configuration
-source "$SCRIPT_DIR/Config/default.conf"
+source "./Config/default.conf"
 
 # Source utility functions
-source "$SCRIPT_DIR/Scripts/utils.sh"
+source "./Scripts/utils.sh"
 
 # Source installation scripts
-source "$SCRIPT_DIR/Scripts/homebrew.sh"
-source "$SCRIPT_DIR/Scripts/fonts.sh"
-source "$SCRIPT_DIR/Scripts/zsh_config.sh"
-source "$SCRIPT_DIR/Scripts/install_oh_my_posh.sh"
-source "$SCRIPT_DIR/Scripts/install_fastfetch.sh"
-source "$SCRIPT_DIR/Scripts/install_apps.sh"
-
-# Source Zsh configuration
-source "$SCRIPT_DIR/Scripts/zsh_config.sh"
-
-# Run installation steps
-log "[🔧] Starting macOS Setup..."
-
-# Install fonts
-install_font
+source "Scripts/homebrew.sh"
+source "Scripts/fonts.sh"
+source "Scripts/zsh_config.sh"
+source "Scripts/install_oh_my_posh.sh"
+source "Scripts/install_fastfetch.sh"
+source "Scripts/install_apps.sh"
 
 # Check prerequisites
 check_prerequisites() {
@@ -35,22 +26,7 @@ check_prerequisites() {
         log "Error: This script is only for macOS" >&2
         exit 1
     fi
-
-    # Get available disk space in kilobytes and convert to bytes
-    local available_space=$(( $(df -k / | awk 'NR==2 {print $4}') * 1024 ))
     
-    if [ -z "$available_space" ]; then
-        log "Error: Failed to get disk space information" >&2
-        exit 1
-    fi
-    
-    if [ "$available_space" -lt "$MIN_DISK_SPACE" ]; then
-        log "Error: Not enough disk space" >&2
-        log "Available: $((available_space / 1024 / 1024))GB"
-        log "Required: $((MIN_DISK_SPACE / 1024 / 1024))GB"
-        exit 1
-    fi
-
     if ! ping -c 1 google.com &>/dev/null; then
         log "Error: No internet connection" >&2
         exit 1
@@ -61,10 +37,9 @@ check_prerequisites() {
 main() {
     check_prerequisites
     
+    log "[🔧] Starting macOS Setup..."
+    
     # Core components
-    if install_homebrew && configure_homebrew; then
-        log "[✅] Homebrew installation completed"
-    fi
     
     if install_font; then
         log "[✅] Fonts installation completed"
@@ -104,6 +79,7 @@ main() {
     log "3. Configure applications as needed"
 }
 
+# Run the main function
 main "$@"
 
 exit 0
