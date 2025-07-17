@@ -23,7 +23,7 @@ download_file() {
     fi
     
     log "📦" "Downloading $dest..."
-    curl -s "$base_url/$dest" -o "$SCRIPT_DIR/$dest"
+    curl -s "$base_url/$dest" -o "$dest"
     if [ $? -ne 0 ]; then
         log "❌" "Failed to download $dest"
         return 1
@@ -33,8 +33,7 @@ download_file() {
 }
 
 # Create necessary directories
-mkdir -p "$SCRIPT_DIR/Scripts"
-mkdir -p "$SCRIPT_DIR/Config"
+mkdir -p "$SCRIPT_DIR/Scripts" "$SCRIPT_DIR/Config"
 
 # Download all necessary files
 FILES=(
