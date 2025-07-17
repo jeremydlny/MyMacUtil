@@ -4,7 +4,7 @@
 # Orchestrates the installation and configuration of macOS components
 
 # Load configuration
-source config/default.conf
+source "$SCRIPT_DIR/config/default.conf"
 
 # Source utility functions
 source Scripts/utils.sh
