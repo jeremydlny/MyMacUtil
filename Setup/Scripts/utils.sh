@@ -11,14 +11,14 @@ add_if_missing() {
 }
 
 # Log function with optional quiet mode
-log() {
+my_log() {
     if [ -z "$QUIET" ] || [ "$QUIET" = "false" ]; then
         echo "$@"
     fi
 }
 
 # Verbose log function
-log_verbose() {
+my_log_verbose() {
     if [ "$VERBOSE" = "true" ]; then
         echo "$@"
     fi

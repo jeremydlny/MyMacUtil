@@ -23,7 +23,7 @@ is_app_installed() {
         *)
             app_path="/Applications/${app_name}.app"
             if [ ! -d "$app_path" ]; then
-                app_path="/Applications/${app_name/\//-}.app"
+                app_path="/Applications/${app_name///-}.app"
             fi
             ;;
     esac
@@ -51,48 +51,48 @@ is_app_installed() {
 }
 
 install_apps() {
-    echo "[📦] Installing essential applications..."
+    my_log "[📦] Installing essential applications..."
 
     # Browsers
     if ! is_app_installed "brave-browser"; then
         brew install --cask brave-browser
-        echo "[ℹ️] Brave Browser installed successfully"
+        my_log "[ℹ️] Brave Browser installed successfully"
     fi
 
     # Development tools
     if ! is_app_installed "gitkraken"; then
         brew install --cask gitkraken
-        echo "[ℹ️] GitKraken installed successfully"
+        my_log "[ℹ️] GitKraken installed successfully"
     fi
 
     # Communication
     if ! is_app_installed "discord"; then
         brew install --cask discord
-        echo "[ℹ️] Discord installed successfully"
+        my_log "[ℹ️] Discord installed successfully"
     fi
 
     # Media
     if ! is_app_installed "vlc"; then
         brew install --cask vlc
-        echo "[ℹ️] VLC installed successfully"
+        my_log "[ℹ️] VLC installed successfully"
     fi
 
     # Security
     if ! is_app_installed "protonvpn"; then
         brew install --cask protonvpn
-        echo "[ℹ️] ProtonVPN installed successfully"
+        my_log "[ℹ️] ProtonVPN installed successfully"
     fi
 
     # Torrent
     if ! is_app_installed "transmission"; then
         brew install --cask transmission
-        echo "[ℹ️] Transmission installed successfully"
+        my_log "[ℹ️] Transmission installed successfully"
     fi
 
     # System utilities
     if ! is_app_installed "cleanmymac"; then
         brew install --cask cleanmymac
-        echo "[ℹ️] CleanMyMac installed successfully"
+        my_log "[ℹ️] CleanMyMac installed successfully"
     fi
 
     # Window management

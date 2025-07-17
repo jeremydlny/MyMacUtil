@@ -3,14 +3,14 @@
 # Install and configure Fastfetch
 install_fastfetch() {
     if ! command -v fastfetch &>/dev/null; then
-        log "[📦] Installing Fastfetch..."
+        my_log "[📦] Installing Fastfetch..."
         if ! brew install fastfetch; then
-            log "[❌] Failed to install Fastfetch" >&2
+            echo "[❌] Failed to install Fastfetch" >&2
             return 1
         fi
-        log "[✅] Fastfetch installed successfully"
+        my_log "[✅] Fastfetch installed successfully"
     else
-        log "[ℹ️] Fastfetch is already installed"
+        my_log "[ℹ️] Fastfetch is already installed"
     fi
 
     # Add fastfetch to startup

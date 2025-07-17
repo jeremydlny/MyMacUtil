@@ -3,11 +3,11 @@
 # Font installation
 
 install_font() {
-    local FONT_DIR=~/.fonts
-    local FONT_NAME="CascadiaCode"
-    local FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/${FONT_NAME}.zip"
+    FONT_DIR=~/.fonts
+    FONT_NAME="CascadiaCode"
+    FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/${FONT_NAME}.zip"
 
-    log "[🔡] Installing ${FONT_NAME} Nerd Font..."
+    my_log "[🔡] Installing ${FONT_NAME} Nerd Font..."
 
     # Check if font directory exists and is writable
     if [ ! -w "${FONT_DIR}" ]; then
@@ -22,14 +22,14 @@ install_font() {
     fi
 
     # Download and install only regular and italic fonts
-    local fonts_to_download=(
+    fonts_to_download=(
         "${FONT_NAME}-Regular.ttf"
         "${FONT_NAME}-Italic.ttf"
     )
-    local success=true
+    success=true
 
     for font in "${fonts_to_download[@]}"; do
-        local font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/$font"
+        font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/$font"
         
         if curl -I "$font_url" &>/dev/null; then
             if ! curl -L "$font_url" -o "${FONT_DIR}/$font"; then
@@ -45,10 +45,10 @@ install_font() {
     done
     
     if $success; then
-        log "[✅] Fonts installation completed"
+        my_log "[✅] Fonts installation completed"
         return 0
     else
-        log "[❌] Fonts installation failed"
+        my_log "[❌] Fonts installation failed"
         return 1
     fi
 }
