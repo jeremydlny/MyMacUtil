@@ -18,7 +18,11 @@ Automated setup script for configuring your macOS terminal with essential tools 
 ## Installation
 Download and run the bootstrap script:
 ```bash
+<<<<<<< HEAD
 curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup/bootstrap.sh | bash
+=======
+curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Mac-Setup/bootstrap.sh | bash
+>>>>>>> develop
 ```
 
 ## Usage

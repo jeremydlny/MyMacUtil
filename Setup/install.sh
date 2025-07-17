@@ -3,11 +3,21 @@
 # macOS Setup Script
 # Orchestrates the installation and configuration of macOS components
 
+# Get the absolute path of the script directory
+SCRIPT_DIR=$(dirname "$(realpath "$BASH_SOURCE")")
+
 # Load configuration
+<<<<<<< HEAD:Setup/install.sh
 source "$SCRIPT_DIR/config/default.conf"
 
 # Source utility functions
 source Scripts/utils.sh
+=======
+source "$SCRIPT_DIR/Config/default.conf"
+
+# Source utility functions
+source "$SCRIPT_DIR/scripts/utils.sh"
+>>>>>>> develop:Mac-Setup/install.sh
 
 # Source installation scripts
 source Scripts/homebrew.sh
@@ -30,8 +40,16 @@ check_prerequisites() {
         exit 1
     fi
 
-    if [ $(df -k / | awk 'NR==2 {print $4}') -lt $MIN_DISK_SPACE ]; then
+    # Get available disk space in bytes
+    local available_space=$(df -k / | awk 'NR==2 {print $4}')
+    
+    # Convert to bytes (1KB = 1024 bytes)
+    local available_space_bytes=$((available_space * 1024))
+    
+    if [ "$available_space_bytes" -lt "$MIN_DISK_SPACE" ]; then
         log "Error: Not enough disk space" >&2
+        log "Available: $((available_space_bytes / 1024 / 1024))MB"
+        log "Required: $((MIN_DISK_SPACE / 1024 / 1024))MB"
         exit 1
     fi
 
