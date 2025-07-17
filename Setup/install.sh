@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# install.sh
 # macOS Setup Script
 # Orchestrates the installation and configuration of macOS components
 
