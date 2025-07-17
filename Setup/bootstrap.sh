@@ -32,8 +32,8 @@ download_file() {
     return 0
 }
 
-# Create necessary directories in the current directory
-mkdir -p "Scripts" "Config"
+# Create necessary directories in the script directory
+mkdir -p "$SCRIPT_DIR/Scripts" "$SCRIPT_DIR/Config"
 
 # Download all necessary files
 FILES=(
