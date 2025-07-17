@@ -56,88 +56,72 @@ install_apps() {
     # Browsers
     if ! is_app_installed "brave-browser"; then
         brew install --cask brave-browser
-        my_log "[ℹ️] Brave Browser installed successfully"
     fi
 
     # Development tools
     if ! is_app_installed "gitkraken"; then
         brew install --cask gitkraken
-        my_log "[ℹ️] GitKraken installed successfully"
     fi
 
     # Communication
     if ! is_app_installed "discord"; then
         brew install --cask discord
-        my_log "[ℹ️] Discord installed successfully"
     fi
 
     # Media
     if ! is_app_installed "vlc"; then
         brew install --cask vlc
-        my_log "[ℹ️] VLC installed successfully"
     fi
 
     # Security
     if ! is_app_installed "protonvpn"; then
         brew install --cask protonvpn
-        my_log "[ℹ️] ProtonVPN installed successfully"
     fi
 
     # Torrent
     if ! is_app_installed "transmission"; then
         brew install --cask transmission
-        my_log "[ℹ️] Transmission installed successfully"
     fi
 
     # System utilities
     if ! is_app_installed "cleanmymac"; then
         brew install --cask cleanmymac
-        my_log "[ℹ️] CleanMyMac installed successfully"
     fi
 
     # Window management
     if ! is_app_installed "rectangle"; then
         brew install --cask rectangle
-        echo "[ℹ️] Rectangle installed successfully"
     fi
 
     # Display management
     if ! is_app_installed "scroll-reverser"; then
         brew install --cask scroll-reverser
-        echo "[ℹ️] Scroll Reverser installed successfully"
     fi
 
     # System monitoring
     if ! is_app_installed "istat-menus"; then
         brew install --cask istat-menus
-        echo "[ℹ️] iStat Menus installed successfully"
     fi
 
     # AI tools
     if ! is_app_installed "chatgpt"; then
         brew install --cask chatgpt
-        echo "[ℹ️] ChatGPT installed successfully"
     fi
 
     # Battery management
     if ! is_app_installed "aldente"; then
         brew install --cask aldente
-        echo "[ℹ️] AlDente installed successfully"
     fi
 
     # Window switching
     if ! is_app_installed "alt-tab"; then
         brew install --cask alt-tab
-        echo "[ℹ️] Alt-Tab installed successfully"
     fi
 
     # Maintenance
     if ! is_app_installed "keyboardcleantool"; then
         brew install --cask keyboardcleantool
-    else
-        echo "[ℹ️] KeyboardCleanTool is already installed"
     fi
 
-    echo "[✅] Applications installation completed"
     return 0
 }

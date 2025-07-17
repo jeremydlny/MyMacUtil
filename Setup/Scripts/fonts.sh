@@ -46,7 +46,6 @@ install_font() {
         if command -v fc-cache &>/dev/null; then
             fc-cache -f -v "$FONT_DIR"
         fi
-        my_log "[✅] Fonts installation completed"
         return 0
     else
         my_log "[❌] Fonts installation failed"

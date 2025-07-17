@@ -8,9 +8,7 @@ install_fastfetch() {
             echo "[❌] Failed to install Fastfetch" >&2
             return 1
         fi
-        my_log "[✅] Fastfetch installed successfully"
     else
-        my_log "[ℹ️] Fastfetch is already installed"
     fi
 
     # Add fastfetch to startup

@@ -13,8 +13,6 @@ install_oh_my_posh() {
             curl -s https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.json -o "$HOME/.poshthemes/atomic.json"
         fi
         
-        my_log "[✅] Oh My Posh installed successfully"
     else
-        my_log "[ℹ️] Oh My Posh is already installed"
     fi
 }

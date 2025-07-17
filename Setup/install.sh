@@ -41,26 +41,13 @@ main() {
     
     # Core components
     
-    if install_font; then
-        my_log "[✅] Fonts installation completed"
-    fi
-    
-    if configure_zsh; then
-        my_log "[✅] Zsh configuration completed"
-    fi
+    install_font
+    configure_zsh
     
     # Additional components
-    if install_oh_my_posh; then
-        my_log "[✅] Oh My Posh installation completed"
-    fi
-    
-    if install_fastfetch; then
-        my_log "[✅] Fastfetch installation completed"
-    fi
-    
-    if install_apps; then
-        my_log "[✅] Applications installation completed"
-    fi
+    install_oh_my_posh
+    install_fastfetch
+    install_apps
     
     # Final message
     my_log "[✅] Setup complete!"

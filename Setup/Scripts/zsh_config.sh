@@ -20,6 +20,5 @@ configure_zsh() {
     add_if_missing "export VISUAL='nvim'"
     add_if_missing "export PAGER='less'"
     
-    my_log "[✔] Zsh configuration updated"
     return 0
 }
