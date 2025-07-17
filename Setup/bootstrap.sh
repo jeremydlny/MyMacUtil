@@ -23,7 +23,7 @@ download_file() {
     fi
     
     log "📦" "Downloading $dest..."
-    curl -s "$base_url/$dest" -o "$dest"
+    curl -s "$base_url/$dest" -o "$SCRIPT_DIR/$dest"
     if [ $? -ne 0 ]; then
         log "❌" "Failed to download $dest"
         return 1
