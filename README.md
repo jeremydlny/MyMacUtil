@@ -16,9 +16,9 @@ Automated setup script for configuring your macOS terminal with essential tools 
 - Internet connection
 
 ## Installation
-Download and run the installation script:
+Download and run the bootstrap script:
 ```bash
-curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup/install.sh | bash
+curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup/bootstrap.sh | bash
 ```
 
 ## Usage
