@@ -17,6 +17,9 @@ download_file() {
     local dest="$2"
     local base_url="https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup"
     
+    # Create parent directory if it doesn't exist
+    mkdir -p "$(dirname "$SCRIPT_DIR/$dest")"
+    
     if [ -f "$SCRIPT_DIR/$dest" ]; then
         log "ℹ️" "Skipping download of $dest (already exists)"
         return 0
