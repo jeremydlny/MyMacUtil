@@ -63,6 +63,11 @@ install_apps() {
         brew install --cask gitkraken
     fi
 
+    # Terminal emulator
+    if ! is_app_installed "iterm2"; then
+        brew install --cask iterm2
+    fi
+
     # Communication
     if ! is_app_installed "discord"; then
         brew install --cask discord
