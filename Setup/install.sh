@@ -39,6 +39,10 @@ main() {
     
     my_log "[🔧] Starting macOS Setup..."
     
+    # Source required scripts
+    source "./Scripts/install_oh_my_posh.sh"
+    source "./Scripts/install_fastfetch.sh"
+
     # Core components
     
     install_font

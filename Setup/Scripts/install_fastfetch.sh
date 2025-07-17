@@ -8,8 +8,9 @@ install_fastfetch() {
             echo "[❌] Failed to install Fastfetch" >&2
             return 1
         fi
-    else
     fi
+
+    # Add fastfetch to startup
 
     # Add fastfetch to startup
     add_if_missing ""
