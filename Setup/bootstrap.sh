@@ -18,15 +18,15 @@ download_file() {
     local base_url="https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup"
     
     # Create parent directory if it doesn't exist
-    mkdir -p "$(dirname "$SCRIPT_DIR/$dest")"
+    mkdir -p "$(dirname "$dest")" 2>/dev/null
     
-    if [ -f "$SCRIPT_DIR/$dest" ]; then
+    if [ -f "$dest" ]; then
         log "ℹ️" "Skipping download of $dest (already exists)"
         return 0
     fi
     
     log "📦" "Downloading $dest..."
-    curl -s "$base_url/$dest" -o "$SCRIPT_DIR/$dest"
+    curl -s "$base_url/$dest" -o "$dest"
     if [ $? -ne 0 ]; then
         log "❌" "Failed to download $dest"
         return 1
@@ -37,7 +37,7 @@ download_file() {
 
 # Create necessary directories in the current directory
 mkdir -p "Scripts" "Config" 2>/dev/null || {
-    echo "Error: Failed to create necessary directories" >&2
+    echo "Error: Failed to create directories: $PWD" >&2
     exit 1
 }
 
@@ -82,11 +82,11 @@ else
 fi
 
 # Make the installation script executable
-chmod +x "$SCRIPT_DIR/install.sh" 2>/dev/null
+chmod +x "install.sh" 2>/dev/null
 
 # Run the installation script
-if [ -x "$SCRIPT_DIR/install.sh" ]; then
-    "$SCRIPT_DIR/install.sh" "$@"
+if [ -x "install.sh" ]; then
+    ./install.sh "$@"
 else
     echo "Error: Failed to make install.sh executable" >&2
     exit 1
