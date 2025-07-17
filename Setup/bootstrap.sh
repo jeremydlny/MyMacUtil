@@ -11,6 +11,14 @@ log() {
 # Get absolute path of the script directory
 SCRIPT_DIR="$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" && pwd )"
 
+# Create necessary directories in the current directory
+current_dir="$PWD"
+if [ ! -d "$SCRIPT_DIR" ]; then
+    echo "Error: Could not find script directory: $SCRIPT_DIR" >&2
+    echo "Current directory: $current_dir" >&2
+    exit 1
+fi
+
 # Download function
 download_file() {
     local url="$1"
@@ -35,9 +43,9 @@ download_file() {
     return 0
 }
 
-# Create necessary directories in the current directory
-mkdir -p "Scripts" "Config" 2>/dev/null || {
-    echo "Error: Failed to create directories: $PWD" >&2
+# Create necessary directories in the script directory
+mkdir -p "$SCRIPT_DIR/Scripts" "$SCRIPT_DIR/Config" 2>/dev/null || {
+    echo "Error: Failed to create directories in $SCRIPT_DIR" >&2
     exit 1
 }
 
@@ -58,6 +66,7 @@ FILES=(
 for file in "${FILES[@]}"; do
     download_file "$file" "$file" || {
         echo "Error downloading $file" >&2
+        echo "Current directory: $current_dir" >&2
         exit 1
     }
 done
@@ -82,11 +91,11 @@ else
 fi
 
 # Make the installation script executable
-chmod +x "install.sh" 2>/dev/null
+chmod +x "$SCRIPT_DIR/install.sh" 2>/dev/null
 
 # Run the installation script
-if [ -x "install.sh" ]; then
-    ./install.sh "$@"
+if [ -x "$SCRIPT_DIR/install.sh" ]; then
+    "$SCRIPT_DIR/install.sh" "$@"
 else
     echo "Error: Failed to make install.sh executable" >&2
     exit 1
