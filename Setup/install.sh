@@ -13,6 +13,7 @@ source "$SCRIPT_DIR/Config/default.conf"
 source "$SCRIPT_DIR/scripts/utils.sh"
 
 # Source installation scripts
+<<<<<<< HEAD
 source Scripts/homebrew.sh
 source Scripts/fonts.sh
 source Scripts/zsh_config.sh
@@ -22,6 +23,17 @@ source Scripts/install_apps.sh
 
 # Source Zsh configuration
 source Scripts/zsh_config.sh
+=======
+source "$SCRIPT_DIR/scripts/homebrew.sh"
+source "$SCRIPT_DIR/scripts/fonts.sh"
+source "$SCRIPT_DIR/scripts/zsh_config.sh"
+source "$SCRIPT_DIR/scripts/install_oh_my_posh.sh"
+source "$SCRIPT_DIR/scripts/install_fastfetch.sh"
+source "$SCRIPT_DIR/scripts/install_apps.sh"
+
+# Source Zsh configuration
+source "$SCRIPT_DIR/scripts/zsh_config.sh"
+>>>>>>> develop
 
 # Run installation steps
 log "[🔧] Starting macOS Setup..."
@@ -33,16 +45,16 @@ check_prerequisites() {
         exit 1
     fi
 
-    # Get available disk space in bytes
+    # Get available disk space in KB
     local available_space=$(df -k / | awk 'NR==2 {print $4}')
     
-    # Convert to bytes (1KB = 1024 bytes)
-    local available_space_bytes=$((available_space * 1024))
+    # Convert MIN_DISK_SPACE to KB for comparison
+    local min_space_kb=$((MIN_DISK_SPACE / 1024))
     
-    if [ "$available_space_bytes" -lt "$MIN_DISK_SPACE" ]; then
+    if [ "$available_space" -lt "$min_space_kb" ]; then
         log "Error: Not enough disk space" >&2
-        log "Available: $((available_space_bytes / 1024 / 1024))MB"
-        log "Required: $((MIN_DISK_SPACE / 1024 / 1024))MB"
+        log "Available: $((available_space / 1024 / 1024))GB"
+        log "Required: $((MIN_DISK_SPACE / 1024 / 1024))GB"
         exit 1
     fi
 
