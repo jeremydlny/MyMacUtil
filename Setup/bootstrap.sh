@@ -9,7 +9,7 @@ log() {
 }
 
 # Get absolute path of the script directory
-SCRIPT_DIR="$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" && pwd )"
+SCRIPT_DIR="$( cd \"$( dirname \"${0}\" )\" && pwd )"
 
 # Download function
 download_file() {
@@ -35,8 +35,8 @@ download_file() {
     return 0
 }
 
-# Create necessary directories in the script directory
-mkdir -p "$SCRIPT_DIR/Scripts" "$SCRIPT_DIR/Config" 2>/dev/null
+# Create necessary directories in the current directory
+mkdir -p "Scripts" "Config" 2>/dev/null
 
 # Download all necessary files
 FILES=(
@@ -53,14 +53,24 @@ FILES=(
 
 # Download files
 for file in "${FILES[@]}"; do
-    download_file "$file" "$file" || {
-        echo "Error downloading $file" >&2
+    download_file "$file" "$file"
+done
+
+# Check if all files were downloaded successfully
+for file in "${FILES[@]}"; do
+    if [ ! -f "$file" ]; then
+        echo "Error: Failed to download $file" >&2
         exit 1
-    }
+    fi
 done
 
 # Make sure we're in the correct directory
-cd "$SCRIPT_DIR" || exit 1
+if [ -d "$SCRIPT_DIR" ]; then
+    cd "$SCRIPT_DIR" || exit 1
+else
+    echo "Error: Failed to find script directory" >&2
+    exit 1
+fi
 
 # Make the installation script executable
 chmod +x "$SCRIPT_DIR/install.sh" 2>/dev/null
