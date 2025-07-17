@@ -9,7 +9,7 @@ log() {
 }
 
 # Get absolute path of the script directory
-SCRIPT_DIR="$( cd \"$( dirname \"${0}\" )\" && pwd )"
+SCRIPT_DIR="$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" && pwd )"
 
 # Download function
 download_file() {
@@ -36,7 +36,10 @@ download_file() {
 }
 
 # Create necessary directories in the current directory
-mkdir -p "Scripts" "Config" 2>/dev/null
+mkdir -p "Scripts" "Config" 2>/dev/null || {
+    echo "Error: Failed to create necessary directories" >&2
+    exit 1
+}
 
 # Download all necessary files
 FILES=(
@@ -53,7 +56,10 @@ FILES=(
 
 # Download files
 for file in "${FILES[@]}"; do
-    download_file "$file" "$file"
+    download_file "$file" "$file" || {
+        echo "Error downloading $file" >&2
+        exit 1
+    }
 done
 
 # Check if all files were downloaded successfully
@@ -66,9 +72,12 @@ done
 
 # Make sure we're in the correct directory
 if [ -d "$SCRIPT_DIR" ]; then
-    cd "$SCRIPT_DIR" || exit 1
+    cd "$SCRIPT_DIR" || {
+        echo "Error: Failed to change directory to $SCRIPT_DIR" >&2
+        exit 1
+    }
 else
-    echo "Error: Failed to find script directory" >&2
+    echo "Error: Failed to find script directory at $SCRIPT_DIR" >&2
     exit 1
 fi
 
