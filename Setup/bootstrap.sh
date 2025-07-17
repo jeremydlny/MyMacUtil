@@ -29,5 +29,7 @@ done
 log "🚀" "Starting installation..."
 ./install.sh
 
-# Notify completion
-log "✅" "Installation complete! Terminal will restart automatically..."
+# Handle terminal restart for piped execution
+log "✅" "Installation complete!"
+log "🔄" "To complete setup, run: source ~/.zshrc"
+log "💡" "Or restart your terminal for full effect"

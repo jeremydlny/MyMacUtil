@@ -78,10 +78,18 @@ main() {
     my_log "- Installed essential applications"
     my_log "- Configured Zsh with aliases and settings"
     my_log ""
-    my_log "[ℹ️] Installation complete! Terminal will restart automatically..."
     
-    # Call reload_terminal at the end
-    reload_terminal
+    # Check if we're in a piped execution
+    if [ -t 0 ]; then
+        # Direct execution - can restart terminal
+        my_log "[ℹ️] Restarting terminal..."
+        reload_terminal
+    else
+        # Piped execution - provide instructions
+        my_log "[ℹ️] To complete setup:"
+        my_log "1. Run: source ~/.zshrc"
+        my_log "2. Or restart your terminal"
+    fi
 }
 
 # Run the main function
