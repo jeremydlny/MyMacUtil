@@ -10,7 +10,7 @@ SCRIPT_DIR=$(dirname "$(realpath "$BASH_SOURCE")")
 source "$SCRIPT_DIR/Config/default.conf"
 
 # Source utility functions
-source scripts/utils.sh
+source "$SCRIPT_DIR/scripts/utils.sh"
 
 # Source installation scripts
 source scripts/homebrew.sh
@@ -33,9 +33,16 @@ check_prerequisites() {
         exit 1
     fi
 
+    # Get available disk space in bytes
     local available_space=$(df -k / | awk 'NR==2 {print $4}')
-    if [ "$available_space" -lt "$MIN_DISK_SPACE" ]; then
+    
+    # Convert to bytes (1KB = 1024 bytes)
+    local available_space_bytes=$((available_space * 1024))
+    
+    if [ "$available_space_bytes" -lt "$MIN_DISK_SPACE" ]; then
         log "Error: Not enough disk space" >&2
+        log "Available: $((available_space_bytes / 1024 / 1024))MB"
+        log "Required: $((MIN_DISK_SPACE / 1024 / 1024))MB"
         exit 1
     fi
 

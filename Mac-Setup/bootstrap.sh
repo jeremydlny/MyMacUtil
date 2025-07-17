@@ -14,6 +14,9 @@ download_file() {
     local dest="$2"
     local base_url="https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Mac-Setup"
     
+    # Create parent directory if needed
+    mkdir -p "$(dirname "$dest")"
+    
     if [ -f "$dest" ]; then
         log "ℹ️" "Skipping download of $dest (already exists)"
         return 0
@@ -25,6 +28,13 @@ download_file() {
         log "❌" "Failed to download $dest"
         return 1
     fi
+    
+    # Verify file exists and is not empty
+    if [ ! -s "$dest" ]; then
+        log "❌" "Failed to download $dest (empty file)"
+        return 1
+    fi
+    
     log "✅" "Downloaded $dest successfully"
     return 0
 }
