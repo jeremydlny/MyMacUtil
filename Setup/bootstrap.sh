@@ -11,7 +11,7 @@ log() {
 # Get the script directory
 if [ -n "$BASH_SOURCE" ]; then
     # Direct execution
-    SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
+    SCRIPT_DIR="$PWD"
     echo "Running in direct execution mode"
 else
     # Curl execution
@@ -22,11 +22,8 @@ fi
 echo "Script directory: $SCRIPT_DIR"
 echo "Current directory: $(pwd)"
 
-# Use absolute paths for all operations instead of changing directory
-SCRIPTS_DIR="${SCRIPT_DIR}/Scripts"
-
 # Create necessary directories
-mkdir -p "${SCRIPT_DIR}/Scripts" "${SCRIPT_DIR}/Config" || {
+mkdir -p "Scripts" "Config" || {
     echo "Error: Failed to create directories in $SCRIPT_DIR" >&2
     exit 1
 }
