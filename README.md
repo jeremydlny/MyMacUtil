@@ -44,6 +44,9 @@ The script installs the following essential applications:
 ### Development Tools
 - GitKraken
 
+### Terminal emulator
+- iTerm2
+
 ### Communication
 - Discord
 
