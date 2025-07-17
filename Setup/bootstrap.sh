@@ -51,26 +51,7 @@ FILES=(
 
 # Download files
 for file in "${FILES[@]}"; do
-    dest="$file"
-    dir=$(dirname "$dest")
-    
-    # Create directory if needed
-    if [ "$dir" != "." ]; then
-        mkdir -p "$CURRENT_DIR/$dir"
-    fi
-    
-    if [ -f "$CURRENT_DIR/$dest" ]; then
-        log "ℹ️" "Skipping download of $dest (already exists)"
-        continue
-    fi
-    
-    log "📦" "Downloading $dest..."
-    curl -s "https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup/$file" -o "$CURRENT_DIR/$dest"
-    if [ $? -ne 0 ]; then
-        log "❌" "Failed to download $dest"
-        exit 1
-    fi
-    log "✅" "Downloaded $dest successfully"
+    download_file "$file" "$file"
 done
 
 # Make the installation script executable
