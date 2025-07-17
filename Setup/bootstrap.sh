@@ -55,7 +55,7 @@ for file in "${FILES[@]}"; do
 done
 
 # Make the installation script executable
-chmod +x "$CURRENT_DIR/install.sh"
+chmod +x "$SCRIPT_DIR/install.sh"
 
 # Run the installation script
-cd "$CURRENT_DIR" && ./install.sh "$@"
+"$SCRIPT_DIR/install.sh" "$@"
