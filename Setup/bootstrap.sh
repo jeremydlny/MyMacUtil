@@ -51,8 +51,8 @@ FILES=(
 
 # Download files
 for file in "${FILES[@]}"; do
-    local dest="$file"
-    local dir=$(dirname "$dest")
+    dest="$file"
+    dir=$(dirname "$dest")
     
     # Create directory if needed
     if [ "$dir" != "." ]; then
