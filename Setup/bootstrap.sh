@@ -5,16 +5,6 @@ set -e
 
 log() { echo "[$1] $2"; }
 
-# Check if script is being piped (curl | bash)
-if [ ! -t 0 ]; then
-    log "❌" "This script cannot be run with curl | bash"
-    log "ℹ️" "Please run it with:"
-    log "  " "curl -O https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup/bootstrap.sh"
-    log "  " "chmod +x bootstrap.sh"
-    log "  " "./bootstrap.sh"
-    exit 1
-fi
-
 # Setup
 INSTALL_DIR="$HOME/.my-macutil"
 BASE_URL="https://raw.githubusercontent.com/jeremydlny/MyMacUtil/main/Setup"
