@@ -20,6 +20,7 @@ Download and run the bootstrap script:
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup/bootstrap.sh | bash
 =======
 curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Mac-Setup/bootstrap.sh | bash
@@ -27,6 +28,9 @@ curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/M
 =======
 curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup/bootstrap.sh | bash
 >>>>>>> develop
+=======
+curl -s https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup/bootstrap.sh | bash
+>>>>>>> origin/main
 ```
 
 ## Usage
