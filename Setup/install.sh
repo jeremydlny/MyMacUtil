@@ -22,7 +22,7 @@ source "$SCRIPT_DIR/Scripts/install_apps.sh"
 
 # Check prerequisites
 check_prerequisites() {
-    if ! [[ $(sw_vers) =~ "macOS" ]]; then
+    if [[ $(sw_vers) != *macOS* ]]; then
         my_log "Error: This script is only for macOS" >&2
         exit 1
     fi
