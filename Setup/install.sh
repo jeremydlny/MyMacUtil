@@ -34,6 +34,20 @@ check_prerequisites() {
     fi
 }
 
+# Reload zsh configuration and restart shell
+reload_terminal() {
+    my_log "[🔄] Reloading terminal configuration..."
+    
+    # Source the zshrc file
+    source "$HOME/.zshrc" 2>/dev/null || true
+    
+    # Restart the shell session
+    my_log "[✅] Configuration reloaded! Starting new shell session..."
+    
+    # Use exec to replace current shell with new one
+    exec zsh -l
+}
+
 # Main installation flow
 main() {
     check_prerequisites
@@ -45,7 +59,6 @@ main() {
     source "./Scripts/install_fastfetch.sh"
 
     # Core components
-    
     install_font
     configure_zsh
     
@@ -65,10 +78,10 @@ main() {
     my_log "- Installed essential applications"
     my_log "- Configured Zsh with aliases and settings"
     my_log ""
-    my_log "[ℹ️] Next steps:"
-    my_log "1. Manually install fonts via Font Book"
-    my_log "2. Restart your terminal or run: source ~/.zshrc"
-    my_log "3. Configure applications as needed"
+    my_log "[ℹ️] Installation complete! Terminal will restart automatically..."
+    
+    # Call reload_terminal at the end
+    reload_terminal
 }
 
 # Run the main function

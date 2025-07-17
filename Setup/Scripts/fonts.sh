@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# Font installation
+# Font installation for macOS
 
 install_font() {
-    FONT_DIR=~/.fonts
+    # Use macOS font directory instead of ~/.fonts
+    FONT_DIR="$HOME/Library/Fonts"
     FONT_NAME="CascadiaCode"
     FONT_VERSION="v3.2.1"
     
@@ -42,10 +43,8 @@ install_font() {
     done
     
     if $success; then
-        # Update font cache
-        if command -v fc-cache &>/dev/null; then
-            fc-cache -f -v "$FONT_DIR"
-        fi
+        # On macOS, fonts are automatically available after copying to ~/Library/Fonts
+        my_log "[✅] ${FONT_NAME} fonts installed successfully"
         return 0
     else
         my_log "[❌] Fonts installation failed"

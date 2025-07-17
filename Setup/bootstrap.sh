@@ -28,3 +28,6 @@ done
 # Run installation
 log "🚀" "Starting installation..."
 ./install.sh
+
+# Notify completion
+log "✅" "Installation complete! Terminal will restart automatically..."
