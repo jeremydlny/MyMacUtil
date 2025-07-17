@@ -7,17 +7,10 @@
 SCRIPT_DIR=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Load configuration
-<<<<<<< HEAD:Setup/install.sh
-source "$SCRIPT_DIR/config/default.conf"
-
-# Source utility functions
-source Scripts/utils.sh
-=======
 source "$SCRIPT_DIR/Config/default.conf"
 
 # Source utility functions
 source "$SCRIPT_DIR/scripts/utils.sh"
->>>>>>> develop:Mac-Setup/install.sh
 
 # Source installation scripts
 source Scripts/homebrew.sh
