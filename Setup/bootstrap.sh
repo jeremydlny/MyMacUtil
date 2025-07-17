@@ -12,14 +12,7 @@ log() {
 download_file() {
     local url="$1"
     local dest="$2"
-<<<<<<< HEAD:Setup/bootstrap.sh
     local base_url="https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Setup"
-=======
-    local base_url="https://raw.githubusercontent.com/jeremydlny/MyMacUtil/refs/heads/main/Mac-Setup"
-    
-    # Create parent directory if needed
-    mkdir -p "$(dirname "$dest")"
->>>>>>> develop:Mac-Setup/bootstrap.sh
     
     if [ -f "$dest" ]; then
         log "ℹ️" "Skipping download of $dest (already exists)"
@@ -32,46 +25,23 @@ download_file() {
         log "❌" "Failed to download $dest"
         return 1
     fi
-<<<<<<< HEAD:Setup/bootstrap.sh
-=======
-    
-    # Verify file exists and is not empty
-    if [ ! -s "$dest" ]; then
-        log "❌" "Failed to download $dest (empty file)"
-        return 1
-    fi
-    
->>>>>>> develop:Mac-Setup/bootstrap.sh
     log "✅" "Downloaded $dest successfully"
     return 0
 }
 
 # Create necessary directories
 mkdir -p Scripts
-<<<<<<< HEAD:Setup/bootstrap.sh
 mkdir -p config
 
 # Download all necessary files
 FILES=(
     "config/default.conf"
-=======
-mkdir -p Config
-
-# Download all necessary files
-FILES=(
-    "Config/default.conf"
->>>>>>> develop:Mac-Setup/bootstrap.sh
     "Scripts/utils.sh"
     "Scripts/homebrew.sh"
     "Scripts/fonts.sh"
     "Scripts/zsh_config.sh"
-<<<<<<< HEAD:Setup/bootstrap.sh
     "Scripts/install_oh_my_posh.sh"
     "Scripts/install_fastfetch.sh"
-=======
-    "Scripts/install_ohmyposh.sh"
-    "Scripts/install_fastftech.sh"
->>>>>>> develop:Mac-Setup/bootstrap.sh
     "Scripts/install_apps.sh"
     "install.sh"
 )
