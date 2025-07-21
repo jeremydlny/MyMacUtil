@@ -64,8 +64,11 @@ install_apps() {
     fi
 
     # Terminal emulator
-    if ! is_app_installed "iterm2"; then
+    local iterm_path="/Applications/iTerm.app"
+    if [ ! -d "$iterm_path" ]; then
         brew install --cask iterm2
+    else
+        my_log "[ℹ️] iTerm2 already installed at $iterm_path"
     fi
 
     # Communication

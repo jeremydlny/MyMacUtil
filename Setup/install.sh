@@ -20,6 +20,7 @@ source "$SCRIPT_DIR/Scripts/zsh_config.sh"
 source "$SCRIPT_DIR/Scripts/install_oh_my_posh.sh"
 source "$SCRIPT_DIR/Scripts/install_fastfetch.sh"
 source "$SCRIPT_DIR/Scripts/install_apps.sh"
+source "$SCRIPT_DIR/Scripts/install_zoxide.sh"
 
 # Check prerequisites
 check_prerequisites() {
@@ -66,6 +67,7 @@ main() {
     install_oh_my_posh
     install_fastfetch
     install_apps
+    install_zoxide
     
     # Final message
     my_log "[✅] Setup complete!"
@@ -76,6 +78,7 @@ main() {
     my_log "- Installed Oh My Posh"
     my_log "- Installed Fastfetch"
     my_log "- Installed essential applications"
+    my_log "- Installed zoxide for intelligent directory navigation"
     my_log "- Configured Zsh with aliases and settings"
     my_log ""
     
