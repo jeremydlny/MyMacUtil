@@ -39,8 +39,9 @@ The script installs the following essential applications:
 ### Development Tools
 - GitKraken
 
-### Terminal emulator
+### Terminal tools
 - iTerm2
+- zoxide
 
 ### Communication
 - Discord
