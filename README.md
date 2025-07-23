@@ -92,6 +92,22 @@ After running the installation script:
 2. Restart your terminal or run `source ~/.zshrc`
 3. Configure your applications as needed
 
+## Structure du Projet
+
+```
+MyMacUtil/
+├── README.md           # Documentation du projet
+├── Setup/              # Scripts d'installation principaux
+│   ├── bootstrap.sh    # Script principal de démarrage
+│   ├── install.sh      # Script principal d'installation
+│   ├── Scripts/        # Scripts utilitaires
+│   │   ├── ...
+│   ├── Config/         # Fichiers de configuration
+│   │   └── ...
+│   └── package-lock.json
+└── .git/              # Répertoire Git
+```
+
 ## License
 MIT License
 
